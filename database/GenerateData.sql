@@ -5,7 +5,7 @@ INSERT INTO USER_TYPE VALUES ('ADMIN');
 INSERT INTO USER_TYPE VALUES ('CLIENT');
 
 # ACCOUNT TABLE
-INSERT INTO ACCOUNT (Username, Password, UserType) VALUES ('admin', 'admin', 'ADMIN');
+INSERT INTO ACCOUNT (username, password, user_type) VALUES ('admin', 'admin', 'ADMIN');
     
 # BRAND TABLE
 INSERT INTO BRAND VALUES ('ROLEX');
@@ -48,15 +48,15 @@ INSERT INTO FOR_OBJECT VALUES ('Unisex');
 INSERT INTO FOR_OBJECT VALUES ('Couple');
 
 # PRODUCT TABLE
-INSERT INTO PRODUCT (Title, BrandName, Chain, FaceMaterial, Dial, FaceShape, Machine, ForObject, CurrentPrice, HasLeft)
+INSERT INTO PRODUCT (title, brand_name, chain, face_material, dial, face_shape, machine, for_object, current_price, has_left)
 	VALUES ('MOVADO 0605560', 'MOVADO', 'Metal', 'Shapphire', 'Analog', 'Rectangle', 'Using Battery', 'Male', 1867, 10);
-INSERT INTO PRODUCT (Title, BrandName, Chain, FaceMaterial, Dial, FaceShape, Machine, ForObject, CurrentPrice, HasLeft)
+INSERT INTO PRODUCT (title, brand_name, chain, face_material, dial, face_shape, machine, for_object, current_price, has_left)
 	VALUES ('MOVADO 0606473', 'MOVADO', 'Metal', 'Shapphire', 'Analog', 'Rectangle', 'Using Battery', 'Female', 1193, 10);
-INSERT INTO PRODUCT (Title, BrandName, Chain, FaceMaterial, Dial, FaceShape, Machine, ForObject, CurrentPrice, HasLeft)
+INSERT INTO PRODUCT (title, brand_name, chain, face_material, dial, face_shape, machine, for_object, current_price, has_left)
 	VALUES ('FRE CON 200MC14', 'FREDERIQUE CONSTANT', 'Leather', 'Shapphire', 'Analog', 'Rectangle', 'Using Battery', 'Female', 864, 10);
-INSERT INTO PRODUCT (Title, BrandName, Chain, FaceMaterial, Dial, FaceShape, Machine, ForObject, CurrentPrice, HasLeft)
+INSERT INTO PRODUCT (title, brand_name, chain, face_material, dial, face_shape, machine, for_object, current_price, has_left)
 	VALUES ('Nakzen SL4118GBN-7', 'NAKZEN', 'Leather', 'Mineral', 'Analog', 'Circle', 'Using Battery', 'Couple', 70, 10);
-INSERT INTO PRODUCT (Title, BrandName, Chain, FaceMaterial, Dial, FaceShape, Machine, ForObject, CurrentPrice, HasLeft)
+INSERT INTO PRODUCT (title, brand_name, chain, face_material, dial, face_shape, machine, for_object, current_price, has_left)
 	VALUES ('Citizen BN2036-14E', 'CITIZEN', 'Silicon', 'Mineral', 'Analog', 'Circle', 'Using Battery', 'Male', 617, 10);
     
 # LINK_IMAGE TABLE
