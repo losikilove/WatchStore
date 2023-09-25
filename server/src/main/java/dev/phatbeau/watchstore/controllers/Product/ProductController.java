@@ -1,7 +1,6 @@
 package dev.phatbeau.watchstore.controllers.Product;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,12 +20,17 @@ public class ProductController {
     private ProductService productService;
 
     @GetMapping("/all")
-    public ResponseEntity<List<Product>> getAllProducts() {
-        return new ResponseEntity<List<Product>>(productService.getAllProducts(), HttpStatus.OK);
+    public ResponseEntity<List<Product>> getProducts() {
+        return new ResponseEntity<List<Product>>(productService.getProducts(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Optional<Product>> getProductById(@PathVariable String id) {
-        return new ResponseEntity<Optional<Product>>(productService.getProductById(Integer.parseInt(id)), HttpStatus.OK);  
+    public ResponseEntity<Product> getProductById(@PathVariable String id) {
+        return new ResponseEntity<Product>(productService.getProductById(Integer.parseInt(id)), HttpStatus.OK);  
+    }
+
+    @GetMapping("/all/{brand}")
+    public ResponseEntity<List<Product>> getProductsByBrand(@PathVariable String brand) {
+        return new ResponseEntity<List<Product>>(productService.getProductsByBrand(brand), HttpStatus.OK);
     }
 }

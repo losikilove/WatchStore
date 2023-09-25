@@ -12,7 +12,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ApiError {
-    private Integer errorCode;
-    private String errorDescription;
+    private Integer error_code;
+    private String error_description;
     private Date date;
 }
