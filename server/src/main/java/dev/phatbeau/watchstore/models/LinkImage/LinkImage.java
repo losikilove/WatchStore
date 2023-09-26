@@ -2,7 +2,6 @@ package dev.phatbeau.watchstore.models.LinkImage;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.IdClass;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,10 +16,8 @@ import lombok.Setter;
 @Setter
 @Table(name="Link_Image")
 @Data
-@IdClass(LinkImageId.class)
 public class LinkImage {
-    @Id
-    private Integer product_id;
     @Id 
     private String link_image;
+    private Integer product_id;
 }

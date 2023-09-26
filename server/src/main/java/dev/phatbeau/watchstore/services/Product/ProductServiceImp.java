@@ -45,4 +45,9 @@ public class ProductServiceImp implements ProductService{
     public List<Product> getProductsByBrand(String brand) {
         return productRepo.findAllByBrand(brand);
     }
+
+    @Override
+    public Product addProduct(Product product) {
+        return productRepo.save(product);
+    }
 }

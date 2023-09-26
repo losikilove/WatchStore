@@ -81,7 +81,7 @@ CREATE TABLE PRODUCT (
 CREATE TABLE LINK_IMAGE (
 	product_id INTEGER UNSIGNED,
     link_image VARCHAR(100) NOT NULL,
-    PRIMARY KEY (product_id, link_image)
+    PRIMARY KEY (link_image)
 );
 
 CREATE TABLE APPOINTMENT (

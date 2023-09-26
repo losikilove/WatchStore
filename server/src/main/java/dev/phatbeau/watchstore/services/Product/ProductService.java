@@ -12,4 +12,5 @@ public interface ProductService {
     public List<ProductDto> getProducts();
     public ProductDto getProductById(Integer id);
     public List<Product> getProductsByBrand(String brand);
+    public Product addProduct(Product product);
 }
