@@ -13,4 +13,7 @@ import dev.phatbeau.watchstore.models.Product.Product;
 public interface ProductRepo extends JpaRepository<Product,Integer> {
     @Query(value = "SELECT * FROM product p WHERE p.brand_name=:brand", nativeQuery = true)
     public List<Product> findAllByBrand(@Param("brand") String brand);
+
+    @Query(value = "SELECT p.id FROM product p WHERE p.title=:title", nativeQuery = true)
+    public Integer findIdByTitle(@Param("title") String title);
 }

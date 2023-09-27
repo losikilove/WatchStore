@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import dev.phatbeau.watchstore.dto.Product.ProductDto;
+import dev.phatbeau.watchstore.exceptions.ExistedProductException;
 import dev.phatbeau.watchstore.exceptions.NoProductFoundException;
 import dev.phatbeau.watchstore.mapper.Product.ProductMapper;
 import dev.phatbeau.watchstore.models.Product.Product;
@@ -49,5 +50,60 @@ public class ProductServiceImp implements ProductService{
     @Override
     public Product addProduct(Product product) {
         return productRepo.save(product);
+    }
+
+    @Override
+    public Product updateProduct(Product product, Integer id) {
+        Product currentProduct = productRepo.findById(id).orElseThrow(() -> new NoProductFoundException("No product found"));
+
+        if (product.getBrand_name() != null) {
+            currentProduct.setBrand_name(product.getBrand_name());
+        }
+
+        if (product.getChain() != null) {
+            currentProduct.setChain(product.getChain());
+        }
+
+        if (product.getCurrent_price() != null) {
+            currentProduct.setCurrent_price(product.getCurrent_price());
+        }
+
+        if (product.getDial() != null) {
+            currentProduct.setDial(product.getDial());
+        }
+        
+        if (product.getFace_material() != null) {
+            currentProduct.setFace_material(product.getFace_material());
+        }
+        
+        if (product.getFace_shape() != null) {
+            currentProduct.setFace_shape(product.getFace_shape());
+        }
+        
+        if (product.getFor_object() != null) {
+            currentProduct.setFor_object(product.getFor_object());
+        }
+
+        if (product.getHas_left() != null) {
+            currentProduct.setHas_left(product.getHas_left());
+        }
+        
+        if (product.getMachine() != null) {
+            currentProduct.setMachine(product.getMachine());
+        }
+
+        if (product.getTitle() != null) {
+            if (!product.getTitle().equals(currentProduct.getTitle()) && productRepo.findIdByTitle(product.getTitle()) != null) {
+                throw new ExistedProductException("Product is existing");
+            } else {
+                currentProduct.setTitle(product.getTitle());
+            }
+        }
+
+        if (product.getLinkImages() != null && !product.getLinkImages().isEmpty()) {
+            currentProduct.setLinkImages(product.getLinkImages());
+        }
+
+        return productRepo.save(currentProduct);
     }
 }

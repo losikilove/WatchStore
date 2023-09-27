@@ -17,4 +17,10 @@ public class RestExceptionHandler {
 
         return new ResponseEntity<ApiError>(error, HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler(value = ExistedProductException.class)
+    public ResponseEntity<ApiError> handleExistedProductException() {
+        ApiError error = new ApiError(400, "Product is existing", new Date());
+        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+    }
 }
