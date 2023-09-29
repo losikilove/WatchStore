@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import dev.phatbeau.watchstore.dto.Product.ProductDto;
 import dev.phatbeau.watchstore.models.Product.Product;
 import dev.phatbeau.watchstore.services.Product.ProductService;
 
@@ -24,13 +23,13 @@ public class ProductController {
     private ProductService productService;
 
     @GetMapping("/all")
-    public ResponseEntity<List<ProductDto>> getProducts() {
-        return new ResponseEntity<List<ProductDto>>(productService.getProducts(), HttpStatus.OK);
+    public ResponseEntity<List<Product>> getProducts() {
+        return new ResponseEntity<>(productService.getProducts(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ProductDto> getProductById(@PathVariable String id) {
-        return new ResponseEntity<ProductDto>(productService.getProductById(Integer.parseInt(id)), HttpStatus.OK);  
+    public ResponseEntity<Product> getProductById(@PathVariable String id) {
+        return new ResponseEntity<>(productService.getProductById(Integer.parseInt(id)), HttpStatus.OK);  
     }
 
     @GetMapping("/all/{brand}")
@@ -40,11 +39,11 @@ public class ProductController {
 
     @PostMapping("/add")
     public ResponseEntity<Product> addProduct(@RequestBody Product product) {
-        return new ResponseEntity<Product>(productService.addProduct(product), HttpStatus.CREATED);
+        return new ResponseEntity<>(productService.addProduct(product), HttpStatus.CREATED);
     }
 
     @PatchMapping("/update/{id}")
     public ResponseEntity<Product> updateProduct(@RequestBody Product product, @PathVariable String id) {
-        return new ResponseEntity<Product>(productService.updateProduct(product, Integer.parseInt(id)), HttpStatus.CREATED);
+        return new ResponseEntity<>(productService.updateProduct(product, Integer.parseInt(id)), HttpStatus.CREATED);
     }
 }

@@ -4,13 +4,12 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import dev.phatbeau.watchstore.dto.Product.ProductDto;
 import dev.phatbeau.watchstore.models.Product.Product;
 
 @Service
 public interface ProductService {
-    public List<ProductDto> getProducts();
-    public ProductDto getProductById(Integer id);
+    public List<Product> getProducts();
+    public Product getProductById(Integer id);
     public List<Product> getProductsByBrand(String brand);
     public Product addProduct(Product product);
     public Product updateProduct(Product product, Integer id);

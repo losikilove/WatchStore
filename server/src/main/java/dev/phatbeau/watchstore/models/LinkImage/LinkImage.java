@@ -19,5 +19,4 @@ import lombok.Setter;
 public class LinkImage {
     @Id 
     private String link_image;
-    private Integer product_id;
 }

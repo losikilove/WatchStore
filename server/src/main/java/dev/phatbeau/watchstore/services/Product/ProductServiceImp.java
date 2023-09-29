@@ -23,7 +23,7 @@ public class ProductServiceImp implements ProductService{
     private LinkImageRepo linkImageRepo;
 
     @Override
-    public List<ProductDto> getProducts() {
+    public List<Product> getProducts() {
         List<ProductDto> productDtos = new ArrayList<>();
         List<Product> products = productRepo.findAll();
 
@@ -31,15 +31,12 @@ public class ProductServiceImp implements ProductService{
             productDtos.add(ProductMapper.toUserDto(product, linkImageRepo.findImagesByProductId(product.getId())));
         }
 
-        return productDtos;
+        return productRepo.findAll();
     }
 
     @Override
-    public ProductDto getProductById(Integer id) {
-        Product product = productRepo.findById(id).orElseThrow(() -> new NoProductFoundException("No product found"));
-        ProductDto productDto = ProductMapper.toUserDto(product, linkImageRepo.findImagesByProductId(id));
-
-        return productDto;
+    public Product getProductById(Integer id) {
+        return productRepo.findById(id).orElseThrow(() -> new NoProductFoundException("No product found"));
     }
 
     @Override
@@ -49,6 +46,10 @@ public class ProductServiceImp implements ProductService{
 
     @Override
     public Product addProduct(Product product) {
+        if (productRepo.findIdByTitle(product.getTitle()) != null) {
+            throw new ExistedProductException("Product is already existing");
+        }
+
         return productRepo.save(product);
     }
 
