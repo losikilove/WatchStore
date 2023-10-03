@@ -1,20 +1,21 @@
+'use client'
+
 import Card from 'react-bootstrap/Card';
 
-interface Props {
-    id: string;
-    title: string;
-    price: number;
-    image: string;
+interface IProps {
+    product: IProduct
 }
 
-const Product = (props: Props) => {
+const Product = (props: IProps) => {
+    const { product } = props;
+
     return (
         <Card style={{ width: '18rem' }}>
-            <Card.Img variant='top' src={props.image} />
+            <Card.Img variant='top' src={(product?.images?.at(0)) || '#'} style={{ width: '200px', height: '100px' }} />
             <Card.Body>
-                <Card.Title>{props.title}</Card.Title>
+                <Card.Title>{product?.title}</Card.Title>
                 <Card.Text>
-                    ${props.price}
+                    ${product?.current_price}
                 </Card.Text>
             </Card.Body>
         </Card>

@@ -2,6 +2,7 @@ interface IProduct {
     id: number;
     title: string;
     brand_name: string;
+    chain: string;
     face_material: string;
     dial: string;
     face_shape: string;
@@ -9,5 +10,5 @@ interface IProduct {
     for_object: string;
     current_price: number;
     has_left: number;
-    linkImages: string[];
+    images: string[];
 }
