@@ -1,6 +1,15 @@
 # REST API
 - The current port of server is **8080**
 
+## **ENVIRONEMNT FILE**
+- The .env file locates in the "resources" folder with the path: .\WatchStore_SpringBoot_ReactJS\WatchStore\server\src\main\resources
+- That file includes:
+    - SERVER_PORT="8080"
+    - JDBC_DATABASE_URL="jdbc:mysql://localhost:3306/watchstore"
+    - JDBC_DATABASE_USERNAME=
+    - JDBC_DATABASE_PASSWORD=
+    - JDBC_DATABASE_DRIVER="com.mysql.cj.jdbc.Driver"  
+
 ## **PRODUCT**
 
 ### Get all products: **GET** /api/product/all
