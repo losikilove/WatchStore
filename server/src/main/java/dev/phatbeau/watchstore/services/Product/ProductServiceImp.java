@@ -15,7 +15,7 @@ import dev.phatbeau.watchstore.repositories.LinkImage.LinkImageRepo;
 import dev.phatbeau.watchstore.repositories.Product.ProductRepo;
 
 @Component
-public class ProductServiceImp implements ProductService{
+public class ProductServiceImp implements ProductService {
     @Autowired
     private ProductRepo productRepo;
 
@@ -23,7 +23,7 @@ public class ProductServiceImp implements ProductService{
     private LinkImageRepo linkImageRepo;
 
     @Override
-    public List<Product> getProducts() {
+    public List<ProductDto> getProducts() {
         List<ProductDto> productDtos = new ArrayList<>();
         List<Product> products = productRepo.findAll();
 
@@ -31,12 +31,15 @@ public class ProductServiceImp implements ProductService{
             productDtos.add(ProductMapper.toUserDto(product, linkImageRepo.findImagesByProductId(product.getId())));
         }
 
-        return productRepo.findAll();
+        return productDtos;
     }
 
     @Override
-    public Product getProductById(Integer id) {
-        return productRepo.findById(id).orElseThrow(() -> new NoProductFoundException("No product found"));
+    public ProductDto getProductById(Integer id) {
+        Product product = productRepo.findById(id).orElseThrow(() -> new NoProductFoundException("No product found"));
+        ProductDto productDto = ProductMapper.toUserDto(product, linkImageRepo.findImagesByProductId(id));
+
+        return productDto;
     }
 
     @Override
@@ -55,7 +58,8 @@ public class ProductServiceImp implements ProductService{
 
     @Override
     public Product updateProduct(Product product, Integer id) {
-        Product currentProduct = productRepo.findById(id).orElseThrow(() -> new NoProductFoundException("No product found"));
+        Product currentProduct = productRepo.findById(id)
+                .orElseThrow(() -> new NoProductFoundException("No product found"));
 
         if (product.getBrand_name() != null) {
             currentProduct.setBrand_name(product.getBrand_name());
@@ -72,15 +76,15 @@ public class ProductServiceImp implements ProductService{
         if (product.getDial() != null) {
             currentProduct.setDial(product.getDial());
         }
-        
+
         if (product.getFace_material() != null) {
             currentProduct.setFace_material(product.getFace_material());
         }
-        
+
         if (product.getFace_shape() != null) {
             currentProduct.setFace_shape(product.getFace_shape());
         }
-        
+
         if (product.getFor_object() != null) {
             currentProduct.setFor_object(product.getFor_object());
         }
@@ -88,13 +92,14 @@ public class ProductServiceImp implements ProductService{
         if (product.getHas_left() != null) {
             currentProduct.setHas_left(product.getHas_left());
         }
-        
+
         if (product.getMachine() != null) {
             currentProduct.setMachine(product.getMachine());
         }
 
         if (product.getTitle() != null) {
-            if (!product.getTitle().equals(currentProduct.getTitle()) && productRepo.findIdByTitle(product.getTitle()) != null) {
+            if (!product.getTitle().equals(currentProduct.getTitle())
+                    && productRepo.findIdByTitle(product.getTitle()) != null) {
                 throw new ExistedProductException("Product is existing");
             } else {
                 currentProduct.setTitle(product.getTitle());

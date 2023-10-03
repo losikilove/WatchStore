@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import dev.phatbeau.watchstore.dto.Product.ProductDto;
 import dev.phatbeau.watchstore.models.Product.Product;
 import dev.phatbeau.watchstore.services.Product.ProductService;
 
@@ -23,13 +24,13 @@ public class ProductController {
     private ProductService productService;
 
     @GetMapping("/all")
-    public ResponseEntity<List<Product>> getProducts() {
+    public ResponseEntity<List<ProductDto>> getProducts() {
         return new ResponseEntity<>(productService.getProducts(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Product> getProductById(@PathVariable String id) {
-        return new ResponseEntity<>(productService.getProductById(Integer.parseInt(id)), HttpStatus.OK);  
+    public ResponseEntity<ProductDto> getProductById(@PathVariable String id) {
+        return new ResponseEntity<>(productService.getProductById(Integer.parseInt(id)), HttpStatus.OK);
     }
 
     @GetMapping("/all/{brand}")
