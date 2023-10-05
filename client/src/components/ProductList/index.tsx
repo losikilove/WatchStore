@@ -1,28 +1,23 @@
 'use client'
 
 import { useEffect, useState } from 'react';
-import env from "react-dotenv";
 
-import useSWR from 'swr';
-
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import useProducts from '@/api/useProducts';
-
 import Product from '../Product';
+import { Grid } from '@mui/material';
 
 const ProductList = () => {
     const { products, isLoading, isError } = useProducts();
 
     return (
-        <ul>
+
+        <Grid container>
             {products?.map((product: IProduct) =>
-                <li key={product?.id}>
+                <Grid item xs={6} md={2.3} key={product?.id}>
                     <Product product={product} />
-                </li>
+                </Grid>
             )}
-        </ul>
+        </Grid>
     )
 }
 

@@ -39,4 +39,4 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 - Bundle environment variables for the browser by prefixing with **NEXT_PUBLIC_**
 - Consisting of:
     - NEXT_PUBLIC_SEVER_URL=
-- Type **process.env.{ENV_VARIABLES}** to use in a nextjs file
+- Type **process.env.{ENV_VARIABLES}** to use environment variables in a nextjs file
