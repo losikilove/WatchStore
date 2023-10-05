@@ -1,6 +1,7 @@
 export const styleCard = {
     boxShadow: 'none',
-    paddingBottom: '50px',
+    paddingBottom: '30px',
+    marginTop: '20px'
 }
 
 export const styleCardMedia = {
