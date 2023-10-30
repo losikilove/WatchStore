@@ -17,6 +17,11 @@ import org.springframework.web.bind.annotation.RestController;
 import dev.phatbeau.watchstore.dto.Product.ProductDto;
 import dev.phatbeau.watchstore.models.Product.Product;
 import dev.phatbeau.watchstore.services.Product.ProductService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
 @RestController
 @RequestMapping("api/product/")
@@ -25,11 +30,18 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
+    @Operation(summary = "Get all products")
     @GetMapping("/all")
     public ResponseEntity<List<ProductDto>> getProducts() {
         return new ResponseEntity<>(productService.getProducts(), HttpStatus.OK);
     }
 
+    @Operation(summary = "Get a product by id")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Found the product", content = {
+                    @Content(mediaType = "application/json", schema = @Schema(implementation = Product.class)) }),
+            @ApiResponse(responseCode = "400", description = "Product not found", content = @Content)
+    })
     @GetMapping("/{id}")
     public ResponseEntity<ProductDto> getProductById(@PathVariable String id) {
         return new ResponseEntity<>(productService.getProductById(Integer.parseInt(id)), HttpStatus.OK);

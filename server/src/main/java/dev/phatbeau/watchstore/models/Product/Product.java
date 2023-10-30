@@ -46,10 +46,10 @@ public class Product {
 
     private String for_object;
 
-    @Min(value = 0, message = "Price of book must be greater than 0")
+    @Min(value = 0, message = "Price of product must be greater than 0")
     private Integer current_price;
 
-    @Min(value = 0, message = "Quantity of books must be greater than 0")
+    @Min(value = 0, message = "Quantity of products must be greater than 0")
     private Integer has_left;
 
     @OneToMany(targetEntity = LinkImage.class, cascade = CascadeType.ALL)
