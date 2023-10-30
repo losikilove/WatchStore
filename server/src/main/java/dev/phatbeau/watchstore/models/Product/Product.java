@@ -11,6 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Min;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -22,7 +23,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-@Table(name="product")
+@Table(name = "product")
 @Data
 public class Product {
     @Id
@@ -45,8 +46,10 @@ public class Product {
 
     private String for_object;
 
+    @Min(value = 0, message = "Price of book must be greater than 0")
     private Integer current_price;
 
+    @Min(value = 0, message = "Quantity of books must be greater than 0")
     private Integer has_left;
 
     @OneToMany(targetEntity = LinkImage.class, cascade = CascadeType.ALL)
